@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 80%;
+    max-width: 800px;
+    text-align: center;
+    margin: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px;
+    margin-right: 10px;
+}
+
+h1 {
+    color: #f4c542;
+}
+
+.form-inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    color: #f4c542;
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #ffffff;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f4c542;
+    color: #333333;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e0b534;
+}
+
+h2, h3, h4 {
+    color: #f4c542;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+.team-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.report {
+    text-align: left;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.report pre {
+    background-color: #2e2e2e;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}

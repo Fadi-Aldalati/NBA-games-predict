@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>NBA Game Predictor</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+            <h1>NBA Game Predictor</h1>
+        </div>
+        <form method="POST" action="/predict" class="form-inline">
+            <div>
+                <label for="home_team">Home Team</label>
+                <select name="home_team" id="home_team">
+                    {% for team in teams %}
+                        <option value="{{ team.initials }}">{{ team.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="away_team">Away Team</label>
+                <select name="away_team" id="away_team">
+                    {% for team in teams %}
+                        <option value="{{ team.initials }}">{{ team.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        {% if teams_playing %}
+            <h2>{{ teams_playing }}</h2>
+        {% endif %}
+        {% if prediction_text %}
+            <h2>{{ prediction_text }}</h2>
+        {% endif %}
+        {% if classification_report %}
+    <h3>Classification Report:</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in classification_report.items() %}
+                {% if key not in ['accuracy', 'macro avg', 'weighted avg'] %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>Precision: {{ value['precision'] }}</td>
+                        <td>Recall: {{ value['recall'] }}</td>
+                        <td>F1-score: {{ value['f1-score'] }}</td>
+                        <td>Support: {{ value['support'] }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            <tr>
+                <td>Accuracy</td>
+                <td>{{ classification_report['accuracy'] }}</td>
+            </tr>
+            {% for key in ['macro avg', 'weighted avg'] %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>Precision: {{ classification_report[key]['precision'] }}</td>
+                    <td>Recall: {{ classification_report[key]['recall'] }}</td>
+                    <td>F1-score: {{ classification_report[key]['f1-score'] }}</td>
+                    <td>Support: {{ classification_report[key]['support'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    </div>
+</body>
+</html>
